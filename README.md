@@ -1,5 +1,6 @@
 # wasm-test
-go version 1.22.1
+# wasm 入门学习记录
+#go version 1.22.1
 1、设置变量:
 set GOOS=js 
 set GOARCH=wasm
