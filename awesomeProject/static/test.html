@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>手机号注册</title>
+    <script src="wasm_exec.js"></script>
+    <script>
+        const go = new Go();
+        WebAssembly.instantiateStreaming(fetch("main.wasm"), go.importObject)
+            .then((result) => {
+                go.run(result.instance);
+            });
+    </script>
+    <style>
+        .container {
+            max-width: 400px;
+            margin: 50px auto;
+            padding: 20px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+        }
+        button {
+            padding: 8px 15px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        #sendCodeBtn {
+            width: 120px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>手机号注册</h2>
+        <div class="form-group">
+            <label>手机号:</label>
+            <input type="tel" id="phone" maxlength="11">
+        </div>
+        <div class="form-group">
+            <label>验证码:</label>
+            <div style="display: flex; gap: 10px;">
+                <input type="text" id="verifyCode" maxlength="6">
+                <button id="sendCodeBtn" onclick="sendVerifyCode()">发送验证码</button>
+            </div>
+        </div>
+        <button onclick="register()">注册</button>
+    </div>
+</body>
+</html>
